@@ -1,0 +1,78 @@
+body {
+    /* background: url('1.jpeg') no-repeat center center fixed; Add your image URL */
+    background: url(/static/1.jpeg) no-repeat center center fixed;
+    background-size: cover; /* Cover the entire viewport */
+    color: white; /* White text color for the rest of the body */
+    font-family: 'Wonderful', cursive; /* Use the Wonderful font */
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px; /* Max width for the container */
+    margin: auto; /* Center the container */
+    padding: 20px;
+    border-radius: 10px; /* Rounded corners */
+    background: rgba(0, 0, 0, 0.5); /* Black background with transparency */
+    backdrop-filter: blur(10px); /* Apply blur effect */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* Shadow effect */
+    position: relative; /* Relative positioning */
+    z-index: 1; /* Ensure it appears above the background */
+}
+
+h1 {
+    text-align: center; /* Center headings */
+    margin: 20px 0; /* Margin for headings */
+    color: orange; /* Change main header color to orange */
+}
+
+h2 {
+    text-align: center; /* Center subheadings */
+    margin: 20px 0; /* Margin for subheadings */
+}
+
+.outfit-list {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0; /* Remove padding */
+}
+
+.outfit-item {
+    padding: 10px; /* Padding for outfit items */
+    border-bottom: 1px solid #444; /* Bottom border for separation */
+    display: flex; /* Flexbox for item layout */
+    justify-content: space-between; /* Space between item text and button */
+    align-items: center; /* Center align items vertically */
+}
+
+.donate-button {
+    background-color: orange; /* Change button color to orange */
+    color: white; /* White text for button */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px 15px; /* Padding for button */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+.donate-button:hover {
+    background-color: #ff7f00; /* Darker orange on hover */
+}
+
+.donate-link {
+    color: #17a2b8; /* Link color */
+    text-decoration: none; /* No underline */
+}
+
+.donate-link:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1.5em; /* Adjust heading size for mobile */
+    }
+
+    .donate-button {
+        width: 100%; /* Full-width button on small screens */
+    }
+}
