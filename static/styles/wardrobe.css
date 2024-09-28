@@ -1,0 +1,144 @@
+body {
+    font-family: 'Wonderful', sans-serif;
+    /* background: url('1.jpeg') no-repeat center center fixed;  */
+    background: url(/static/1.jpeg) no-repeat center center fixed;
+    background-size: cover; /* Ensure the image covers the entire background */
+    margin: 0;
+    padding: 20px;
+    color: #333;
+}
+
+.container {
+    background: rgba(0, 0, 0, 0.5); /* Glassy black background */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    max-width: 500px;
+    margin: auto; /* Center the container */
+}
+
+h1 {
+    text-align: center;
+    color: orange; /* Changed header color to orange */
+    font-size: 36px; /* Increased font size for the main header */
+}
+
+.input-container {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+    color: white; /* Set label text color to white */
+}
+
+input[type="text"], input[type="file"], select {
+    width: 80%; /* Set width of input boxes */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.preference-container {
+    display: flex;
+    align-items: center;
+}
+
+.spinner-button {
+    width: 30px; /* Width of spinner buttons */
+    height: 30px; /* Height of spinner buttons */
+    background-color: #FF5722; /* Orange background */
+    color: white; /* White text */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.preference-score {
+    width: 50px; /* Set width of the preference score input box */
+    height: 30px; /* Make it thicker */
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center; /* Center the number */
+    margin: 0 5px; /* Margin between input and buttons */
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: auto; /* Show the spinner */
+}
+
+.add-outfit-button {
+    background-color: #FF5722; /* Orange button color */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px; /* Increased font size for Add Outfit button */
+    width: 100%;
+}
+
+.add-outfit-button:hover {
+    background-color: #FF3D00; /* Darker orange on hover */
+}
+
+.go-to-profile {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: orange; /* Orange text for the link */
+    font-size: 20px; /* Increased font size for Go To Profile link */
+    text-decoration: none;
+}
+
+.go-to-profile:hover {
+    text-decoration: underline;
+}
+
+h2.wardrobe-heading {
+    text-align: center;
+    margin-top: 30px;
+    color: orange; /* Set wardrobe heading color to orange */
+    font-size: 28px; /* Increased font size for Your Wardrobe heading */
+    font-family: 'Wonderful', sans-serif; /* Set font to Wonderful */
+}
+
+.wardrobe-list {
+    background-color: rgba(0, 0, 0, 0.8); /* Black shady background */
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.category-title {
+    color: white; /* White text for category titles */
+    font-size: 24px; /* Font size for category titles */
+    margin: 15px 0 10px;
+}
+
+.outfit-item {
+    color: white; /* White text for outfit items */
+    background: rgba(255, 255, 255, 0.1); /* Slightly transparent white for contrast */
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background 0.3s ease;
+}
+
+.outfit-item:hover {
+    background: rgba(255, 255, 255, 0.2); /* Change background on hover */
+}
+
+img {
+    border-radius: 5px;
+    margin-left: 10px;
+}
