@@ -15,11 +15,28 @@
                 <!-- <button type="button" class="toggle-btn" >Log In</button> -->
             </div>
             <form action="/login" method="post" id="login" class="input-group">
-                <input type="text" class="input-field" placeholder="User Name" required>
-                <input type="password" class="input-field" placeholder="Enter Your Password" required>
+                <input type="text" class="input-field" name="username" placeholder="User Name" required>
+                <input type="password" class="input-field" name="password" placeholder="Enter Your Password" required>
                 <button type="submit" class="submit-btn">Log In</button>
             </form>
         </div>
+        {% with messages = get_flashed_messages() %}
+
+  {% if messages %}
+
+    <ul>
+
+      {% for message in messages %}
+
+        <li>{{ message }}</li>
+
+      {% endfor %}
+
+    </ul>
+
+  {% endif %}
+
+{% endwith %}
     </div>
     <script>
         function login(){

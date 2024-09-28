@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Wardrobe</title>
+</head>
+<body>
+    <h1>Your Wardrobe</h1>
+
+    <form action="/wardrobe" method="post" enctype="multipart/form-data">
+        <label for="outfit_name">Outfit Name:</label>
+        <input type="text" id="outfit_name" name="outfit_name" required>
+        
+        <label for="file">Upload Image:</label>
+        <input type="file" id="file" name="file" accept="image/*" required>
+
+        <button type="submit">Add Outfit</button>
+    </form>
+
+    <h2>Your Outfits</h2>
+    <ul>
+        {% for outfit in outfits %}
+            <li>{{ outfit['outfit_name'] }} - 
+                <img src="{{ url_for('static', filename='uploads/' + outfit['image_filename']) }}" alt="{{ outfit['outfit_name'] }}" style="width:100px;height:auto;">
+            </li>
+        {% else %}
+            <li>No outfits added yet.</li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>

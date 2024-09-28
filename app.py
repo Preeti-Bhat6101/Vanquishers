@@ -1,14 +1,24 @@
 from flask import Flask, flash, redirect, request, render_template, session, jsonify
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
+from werkzeug.utils import secure_filename
 import sqlite3
+import os
 
 app = Flask(__name__)
 DATABASE = 'database.db'
 
+app.config['UPLOAD_FOLDER'] = 'static/uploads' 
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
 def get_db():
     conn = sqlite3.connect(DATABASE)
-    conn.row_factory = sqlite3.Row  # To fetch rows as dictionaries
+    conn.row_factory = sqlite3.Row  
     return conn
 
 def init_db():
@@ -21,10 +31,19 @@ def init_db():
             hash TEXT NOT NULL
         )
     ''')
+    db.execute('''
+        CREATE TABLE  outfits (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_id INTEGER,
+            outfit_name TEXT NOT NULL,
+            image_filename TEXT NOT NULL, 
+            FOREIGN KEY (user_id) REFERENCES users (id)
+        )
+    ''')
     conn.commit()
     conn.close()
 
-# Initialize the database when the application starts
+
 init_db()
 
 app.config["SECRET_KEY"] = "hgfhsdhdfhs dfhsefh"
@@ -34,7 +53,6 @@ Session(app)
 
 @app.after_request
 def after_request(response):
-    """Ensure responses aren't cached"""
     response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
     response.headers["Expires"] = 0
     response.headers["Pragma"] = "no-cache"
@@ -51,13 +69,13 @@ def login():
     if request.method == "POST":
         conn = get_db()
         rows = conn.execute("SELECT * FROM users WHERE username = ?", (request.form.get("username"),)).fetchall()
-        print(rows)
+        conn.commit()
 
         if len(rows) != 1 or not check_password_hash(rows[0]["hash"], request.form.get("password")):
-            flash("Invalid Username or Password")
+            flash("Invalid Username or Password", 'error')
             return redirect("/login")
 
-        # Log the user in
+    
         session["user_id"] = rows[0]["id"]
         return redirect("/")
 
@@ -71,7 +89,7 @@ def signup():
         confirmation = request.form.get("confirmation")
 
         if password != confirmation:
-            flash("Passwords must match")
+            flash("Passwords must match", 'error')
             return redirect("/signup")
 
         hash = generate_password_hash(password)
@@ -81,7 +99,7 @@ def signup():
             conn.execute("INSERT INTO users (username, hash) VALUES (?, ?)", (username, hash))
             conn.commit()
         except sqlite3.IntegrityError:
-            flash("Username already taken")
+            flash("Username already taken", 'error')
             return redirect("/signup")
         finally:
             conn.close()
@@ -89,6 +107,45 @@ def signup():
         return redirect("/login")
 
     return render_template("signup.html")
+
+@app.route("/wardrobe", methods=["GET", "POST"])
+def wardrobe():
+    if request.method == "POST":
+        outfit_name = request.form.get("outfit_name")
+        user_id = session["user_id"]
+        
+        
+        if 'file' not in request.files:
+            flash("No file part", 'error')
+            return redirect("/wardrobe")
+        
+        file = request.files['file']
+        
+        if file.filename == '':
+            flash("No selected file", 'error')
+            return redirect("/wardrobe")
+        
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            
+            
+            conn = get_db()
+            conn.execute("INSERT INTO outfits (user_id, outfit_name, image_filename) VALUES (?, ?, ?)",
+                         (user_id, outfit_name, filename))
+            conn.commit()
+            conn.close()
+
+            flash("Outfit added!", 'success')
+            return redirect("/wardrobe")
+
+    
+    user_id = session["user_id"]
+    conn = get_db()
+    outfits = conn.execute("SELECT * FROM outfits WHERE user_id = ?", (user_id,)).fetchall()
+    conn.close()
+
+    return render_template("wardrobe.html", outfits=outfits)
 
 if __name__ == '__main__':
     app.run(debug=True)
