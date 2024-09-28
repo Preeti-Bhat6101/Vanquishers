@@ -1,6 +1,6 @@
 body {
     /* background: url('1.jpeg') no-repeat center center fixed; Add your image URL */
-    background: url(/static/1.jpeg) no-repeat center center fixed;
+    background: url(/static/1.png) no-repeat center center fixed;
     background-size: cover; /* Cover the entire viewport */
     color: white; /* White text color for the rest of the body */
     font-family: 'Wonderful', cursive; /* Use the Wonderful font */
