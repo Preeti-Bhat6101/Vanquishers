@@ -78,7 +78,12 @@ ul li a:hover {
   transition: 0.3s ease;
 }
 
-.cn:hover {
+.content .cn:active {
+  transform: scale(0.95); /* Slightly shrink the button on click */
+  background-color: #e08e00; /* Darker shade on click */
+}
+
+.content .cn:hover {
   background-color: #fff;
 }
 
@@ -236,4 +241,8 @@ ul li a:hover {
   height: auto;
   object-fit: contain; /* Maintain aspect ratio */
   /* Ensure equal spacing between text and image */
+}
+
+.why1 {
+  color: white;
 }
