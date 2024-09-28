@@ -2,54 +2,87 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Wardrobe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Wonderful&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="wardrobe.css"> -->
+    <link rel="stylesheet" href="/static/styles/wardrobe.css">
 </head>
 <body>
-    <h1>Your Wardrobe</h1>
+    <div class="container"> <!-- Added a container for the glassy effect -->
+        <h1>Your Wardrobe</h1>
 
-    <form action="/wardrobe" method="post" enctype="multipart/form-data">
-        <label for="outfit_name">Outfit Name:</label>
-        <input type="text" id="outfit_name" name="outfit_name" required>
-        
-        <label for="file">Upload Image:</label>
-        <input type="file" id="file" name="file" accept="image/*" required>
+        <form action="/wardrobe" method="post" enctype="multipart/form-data">
+            <div class="input-container">
+                <label for="outfit_name">Outfit Name:</label>
+                <input type="text" id="outfit_name" name="outfit_name" required>
+            </div>
+            
+            <div class="input-container">
+                <label for="file">Upload Image:</label>
+                <input type="file" id="file" name="file" accept="image/*" required>
+            </div>
 
-        <label for="preference">Set Preference (1-10):</label>
-        <input type="number" name="preference_score" min="1" max="10" value="5">
+            <div class="input-container">
+                <label for="preference">Set Preference (1-10):</label>
+                <div class="preference-container">
+                    <button type="button" class="spinner-button" onclick="decreasePreference()">-</button>
+                    <input type="number" name="preference_score" min="1" max="10" value="5" class="preference-score" required>
+                    <button type="button" class="spinner-button" onclick="increasePreference()">+</button>
+                </div>
+            </div>
+            
+            <div class="input-container">
+                <label for="category">Select Category:</label>
+                <select name="category" required>
+                    <option value="">Choose a category</option>
+                    <option value="Shirt">Shirt</option>
+                    <option value="Pant">Pant</option>
+                    <option value="T-Shirt">T-Shirt</option>
+                    <option value="Night Dress">Night Dress</option>
+                    <option value="Formal">Formal</option>
+                </select>
+            </div>
 
-        <label for="category">Select Category:</label>
-             <select name="category" required>
-        <option value="">Choose a category</option>
-        <option value="Shirt">Shirt</option>
-        <option value="Pant">Pant</option>
-        <option value="T-Shirt">T-Shirt</option>
-        <option value="Night Dress">Night Dress</option>
-        <option value="Formal">Formal</option>
-             </select>
+            <button type="submit" class="add-outfit-button">Add Outfit</button>
+        </form>
 
-    
+        <a href="{{ url_for('profile') }}" class="go-to-profile">Go To Profile</a>
 
-        <button type="submit">Add Outfit</button>
+        <h2 class="wardrobe-heading">Your Wardrobe</h2>
 
-        <a href="{{ url_for('profile') }}">Go To Profile</a>
+        <div class="wardrobe-list">
+            {% for category in ['Shirt', 'Pant', 'T-Shirt', 'Night Dress', 'Formal'] %}
+                <h3 class="category-title">{{ category }}s</h3>
+                <ul>
+                    {% for outfit in outfits %}
+                        {% if outfit.category == category %}
+                            <li class="outfit-item">{{ outfit.outfit_name }} - Score: {{ outfit.preference_score }}
+                                <img src="{{ url_for('static', filename='uploads/' + outfit.image_filename) }}" alt="{{ outfit.outfit_name }}" width="100">
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            {% endfor %}
+        </div>
+    </div>
 
-        <h2>Your Wardrobe</h2>
+    <script>
+        function increasePreference() {
+            const input = document.querySelector('.preference-score');
+            let value = parseInt(input.value);
+            if (value < 10) {
+                input.value = value + 1;
+            }
+        }
 
-        {% for category in ['Shirt', 'Pant', 'T-Shirt', 'Night Dress', 'Formal'] %}
-            <h3>{{ category }}s</h3>
-            <ul>
-                {% for outfit in outfits %}
-                    {% if outfit.category == category %}
-                        <li>{{ outfit.outfit_name }} - Score: {{ outfit.preference_score }}
-                            <img src="{{ url_for('static', filename='uploads/' + outfit.image_filename) }}" alt="{{ outfit.outfit_name }}" width="100">
-                            </form>
-                        </li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
-        {% endfor %}
-
-            </form>
-
+        function decreasePreference() {
+            const input = document.querySelector('.preference-score');
+            let value = parseInt(input.value);
+            if (value > 1) {
+                input.value = value - 1;
+            }
+        }
+    </script>
 </body>
 </html>
