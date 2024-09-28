@@ -157,6 +157,14 @@ def delete_outfit(outfit_id):
     flash("Outfit deleted!", 'success')
     return redirect("/wardrobe")
 
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
+@app.route("/contactus")
+def contactus():
+    return render_template("contactus.html")
+
 
 if __name__ == '__main__':
     app.run(debug=True)
