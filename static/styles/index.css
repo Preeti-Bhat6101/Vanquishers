@@ -1,0 +1,8 @@
+navbar{ 
+    background-color: rgb(136, 13, 13);
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255 / var(--tw-text-opacity)) /* #ffffff */;
+    display: flex;
+    justify-content: space-between;
+    margin : 3rem;
+}
