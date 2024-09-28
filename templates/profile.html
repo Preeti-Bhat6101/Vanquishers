@@ -1,0 +1,20 @@
+<h1>Your Profile</h1>
+
+<h2>Preferred Outfits</h2>
+<ul>
+{% for outfit in preferred_outfits %}
+    <li>{{ outfit.outfit_name }} - Score: {{ outfit.preference_score }}</li>
+{% endfor %}
+</ul>
+
+<h2>Least Preferred Outfits (Consider Donating)</h2>
+<ul>
+{% for outfit in least_preferred_outfits %}
+    <li>{{ outfit.outfit_name }} - Score: {{ outfit.preference_score }}
+        <form action="{{ url_for('delete_outfit', outfit_id=outfit.id) }}" method="POST">
+            <button type="submit">Donate</button>
+        </form>
+        <a href="{{ url_for('community') }}">Learn more about donating</a>
+    </li>
+{% endfor %}
+</ul>

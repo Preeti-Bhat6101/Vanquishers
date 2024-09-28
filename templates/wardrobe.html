@@ -14,21 +14,42 @@
         <label for="file">Upload Image:</label>
         <input type="file" id="file" name="file" accept="image/*" required>
 
-        <button type="submit">Add Outfit</button>
-    </form>
+        <label for="preference">Set Preference (1-10):</label>
+        <input type="number" name="preference_score" min="1" max="10" value="5">
 
-    <h2>Your Outfits</h2>
-    <ul>
-        {% for outfit in outfits %}
-            <li>{{ outfit['outfit_name'] }} - 
-                <img src="{{ url_for('static', filename='uploads/' + outfit['image_filename']) }}" alt="{{ outfit['outfit_name'] }}" style="width:100px;height:auto;">
-                <form action="{{ url_for('delete_outfit', outfit_id=outfit['id']) }}" method="post" style="display:inline;">
-                    <button type="submit" onclick="return confirm('Are you sure you want to delete this outfit?');">Delete</button>
-            </li>
-        {% else %}
-            <li>No outfits added yet.</li>
+        <label for="category">Select Category:</label>
+             <select name="category" required>
+        <option value="">Choose a category</option>
+        <option value="Shirt">Shirt</option>
+        <option value="Pant">Pant</option>
+        <option value="T-Shirt">T-Shirt</option>
+        <option value="Night Dress">Night Dress</option>
+        <option value="Formal">Formal</option>
+             </select>
+
+    
+
+        <button type="submit">Add Outfit</button>
+
+        <a href="{{ url_for('profile') }}">Go To Profile</a>
+
+        <h2>Your Wardrobe</h2>
+
+        {% for category in ['Shirt', 'Pant', 'T-Shirt', 'Night Dress', 'Formal'] %}
+            <h3>{{ category }}s</h3>
+            <ul>
+                {% for outfit in outfits %}
+                    {% if outfit.category == category %}
+                        <li>{{ outfit.outfit_name }} - Score: {{ outfit.preference_score }}
+                            <img src="{{ url_for('static', filename='uploads/' + outfit.image_filename) }}" alt="{{ outfit.outfit_name }}" width="100">
+                            </form>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
         {% endfor %}
-    </ul>
+
+            </form>
 
 </body>
 </html>
