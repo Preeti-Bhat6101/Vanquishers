@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Tecido</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome for icons -->
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-image: url('/static/11.jpg'); /* Use the image name here */
+      background-size: cover; /* This makes the background image cover the entire viewport */
+      background-position: 30% center; /* Move the background image more to the left */
+      background-repeat: no-repeat; /* This prevents the background image from repeating */
+      color: #ffffff;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .content {
+      background: rgba(0, 0, 0, 0.7); /* Semi-transparent black for glass effect */
+      color: #ffffff;
+      padding: 40px;
+      border-radius: 10px;
+      max-width: 900px;
+      margin: 50px auto;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px); /* Blur effect for glassy look */
+    }
+
+    h2, h3 {
+      color: #ff7200; /* Orange color for main headings */
+      font-size: 2.8em; /* Increased font size */
+      text-align: center;
+    }
+
+    h3 {
+      font-size: 2.1em;
+      margin-top: 30px;
+    }
+
+    p, li {
+      line-height: 1.8;
+      font-size: 1.4em; /* Increased font size for simple sentences */
+      color: #ffffff; /* Simple sentences in white */
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 15px;
+    }
+
+    #more-content {
+      display: none;
+      margin-top: 15px;
+      padding: 20px; /* Padding inside the box */
+      border: 2px solid #e66000; /* Border color */
+      border-radius: 10px; /* Rounded corners */
+      background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent background */
+    }
+
+    #learn-more-btn {
+      display: block;
+      background-color: #ff7200; /* Orange background */
+      color: white;
+      border: none;
+      padding: 15px 25px;
+      cursor: pointer;
+      border-radius: 5px;
+      text-align: center;
+      font-size: 1.4em; /* Larger button text */
+      transition: background-color 0.3s ease, transform 0.2s ease; /* Add transform transition */
+      margin: 25px auto;
+      width: 220px;
+    }
+
+    #learn-more-btn:hover {
+      background-color: #e66000; /* Darker orange on hover */
+      transform: scale(1.05); /* Slightly enlarge button on hover */
+    }
+
+    /* Media Queries for responsive design */
+    @media screen and (max-width: 768px) {
+      .content {
+        padding: 25px;
+      }
+
+      h2 {
+        font-size: 2.4em;
+      }
+
+      h3 {
+        font-size: 1.8em;
+      }
+
+      p {
+        font-size: 1.2em;
+      }
+
+      #learn-more-btn {
+        width: 100%;
+        font-size: 1.2em;
+      }
+    }
+
+    /* Social Media Links Style */
+    .social-media {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .social-media a {
+      margin: 0 15px;
+      color: #ffffff; /* Icon color */
+      font-size: 2em; /* Size of icons */
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .social-media a:hover {
+      color: #ff7200; /* Change color on hover */
+    }
+  </style>
+</head>
+<body>
+
+  <div class="content">
+    <h2>About Tecido</h2>
+    <p id="initial-content">At Tecido, we transform how you interact with your wardrobe. We believe that your clothes should work for you, not the other way around. With today’s fast-paced lifestyle, managing personal items can be overwhelming, leading to clutter, overconsumption, and environmental impact. Tecido helps you take control of your wardrobe in an easy and eco-friendly way, so you can focus on what matters: living sustainably and stylishly.</p>
+    
+    <div id="more-content">
+      <h3>How It Works</h3>
+      <ul>
+        <li><strong>Organize:</strong> Keep track of all your clothing and accessories in one place, creating a virtual wardrobe that’s easy to navigate.</li>
+        <li><strong>Plan:</strong> Mix and match items to create outfits without rummaging through piles of clothes.</li>
+        <li><strong>Track:</strong> See how often you wear items and receive recommendations on what to keep or donate for a clutter-free lifestyle.</li>
+        <li><strong>Sustain:</strong> Gain insights into how your choices affect the environment, helping you reduce overconsumption and live more sustainably.</li>
+      </ul>
+      
+      <h3>Our Values</h3>
+      <ul>
+        <li><strong>Sustainability:</strong> We prioritize eco-friendly solutions to help you make thoughtful, lasting choices.</li>
+        <li><strong>Simplicity:</strong> We believe in a clean, simple user experience that makes organizing your wardrobe a breeze.</li>
+        <li><strong>Mindfulness:</strong> Encouraging conscious consumption for a balanced, clutter-free life.</li>
+        <li><strong>Style:</strong> We want you to rediscover the potential of your wardrobe and enjoy fashion without compromise.</li>
+      </ul>
+      
+      <h3>Join Us</h3>
+      <p>Join thousands of others who are decluttering their lives and reducing their environmental impact with Tecido. Start your journey toward a more sustainable, organized wardrobe today!</p>
+    </div>
+
+    <button id="learn-more-btn" onclick="toggleContent()">Learn More</button>
+
+    <!-- Social Media Links Section -->
+    <div class="social-media">
+      <h3>Know More About Us</h3>
+      <a href="https://www.instagram.com/yourprofile" target="_blank" class="fab fa-instagram"></a>
+      <a href="https://twitter.com/yourprofile" target="_blank" class="fab fa-twitter"></a>
+      <a href="https://www.facebook.com/yourprofile" target="_blank" class="fab fa-facebook-f"></a>
+    </div>
+  </div>
+
+  <script>
+    function toggleContent() {
+      var moreContent = document.getElementById('more-content');
+      var button = document.getElementById('learn-more-btn');
+      if (moreContent.style.display === 'none') {
+        moreContent.style.display = 'block';
+        button.innerText = 'Show Less';
+      } else {
+        moreContent.style.display = 'none';
+        button.innerText = 'Learn More';
+      }
+    }
+  </script>
+
+</body>
+</html>
