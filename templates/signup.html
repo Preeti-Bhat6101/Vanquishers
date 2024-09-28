@@ -20,5 +20,30 @@
             </form>
         </div>    
     </div>
+<<<<<<< HEAD
+=======
+    {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul>
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+<script>
+  window.onload = function() {
+      const messageBox = document.getElementById("success-message");
+      const messageContent = document.getElementById("message-content");
+      const flashMessages = document.getElementById("flash-messages");
+      if (flashMessages && flashMessages.children.length > 0) 
+      {
+          messageBox.style.display = "block";
+          messageContent.textContent = flashMessages.children[0].textContent;
+          alert("Hey there! Your journey with us matters. Let’s dive in and make a positive impact together!");
+      }
+  };
+</script>
+>>>>>>> 0ebe36c363fb560a08997c6db87c4feb409e28ee
 </body>
 </html>

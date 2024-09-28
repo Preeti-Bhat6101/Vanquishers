@@ -37,6 +37,8 @@ def init_db():
             user_id INTEGER,
             outfit_name TEXT NOT NULL,
             image_filename TEXT NOT NULL, 
+            preference_score INTEGER DEFAULT 0, 
+            category TEXT NOT NULL, 
             FOREIGN KEY (user_id) REFERENCES users (id)
         )
     ''')
@@ -113,7 +115,8 @@ def wardrobe():
     if request.method == "POST":
         outfit_name = request.form.get("outfit_name")
         user_id = session["user_id"]
-        
+        preference_score = request.form.get("preference_score", 5)
+        category = request.form.get("category")
         
         if 'file' not in request.files:
             flash("No file part", 'error')
@@ -131,8 +134,8 @@ def wardrobe():
             
             
             conn = get_db()
-            conn.execute("INSERT INTO outfits (user_id, outfit_name, image_filename) VALUES (?, ?, ?)",
-                         (user_id, outfit_name, filename))
+            conn.execute("INSERT INTO outfits (user_id, outfit_name, image_filename, preference_score, category) VALUES (?, ?, ?, ?, ?)",
+                         (user_id, outfit_name, filename, preference_score, category))
             conn.commit()
             conn.close()
 
@@ -157,6 +160,30 @@ def delete_outfit(outfit_id):
     flash("Outfit deleted!", 'success')
     return redirect("/wardrobe")
 
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
+@app.route("/contactus")
+def contactus():
+    return render_template("contactus.html")
+
+@app.route("/profile")
+def profile():
+    user_id = session["user_id"]
+    conn = get_db()
+
+    preferred_outfits = conn.execute("SELECT * FROM outfits WHERE user_id = ? ORDER BY preference_score DESC", (user_id,)).fetchall()
+    
+    least_preferred_outfits = conn.execute("SELECT * FROM outfits WHERE user_id = ? ORDER BY preference_score ASC LIMIT 5", (user_id,)).fetchall()
+
+    conn.close()
+    
+    return render_template("profile.html", preferred_outfits=preferred_outfits, least_preferred_outfits=least_preferred_outfits)
+
+@app.route("/community")
+def community():
+    return render_template("community.html")
 
 if __name__ == '__main__':
     app.run(debug=True)
