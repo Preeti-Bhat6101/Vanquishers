@@ -6,7 +6,7 @@
 body {
   background-position: center;
   background-size: cover;
-  background: #0f0f0e;
+  background-color: #000000;
 }
 
 .main {
@@ -218,7 +218,14 @@ ul li a:hover {
   letter-spacing: 2px;
   color: #fff;
 }
-
+.Whyustitle {
+  font-family: "Times New Roman";
+  font-size: 2.3rem;
+  margin-top: 0; /* Remove extra top margin */
+  letter-spacing: 2px;
+  color: #fff;
+  margin-left: 6rem;
+}
 .content span {
   color: #ff7200;
   font-size: 2.5rem;
@@ -243,6 +250,62 @@ ul li a:hover {
   /* Ensure equal spacing between text and image */
 }
 
-.why1 {
+/* Style for the Why Us cards */
+.whyus {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 2rem 0;
+  background-color: #0e0d0d; /* Light background to contrast the cards */
   color: white;
+}
+
+.card {
+  /* background-color: #601414; */
+  border: 2px solid white;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  width: 30%;
+  padding: 1.5rem;
+  margin: 1rem;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.3s;
+}
+
+.card h3 {
+  margin: 1.2rem;
+  font-size: 1.6rem;
+  color: #ff7200;
+
+  /* color: #333; */
+}
+
+.card span {
+  font-style: italic;
+  /* color: #777; */
+}
+
+.card p {
+  /* color: #555; */
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.card:hover {
+  transform: translateY(-20px);
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+  background-color: rgb(42, 39, 39);
+}
+
+/* Ensure responsiveness */
+@media (max-width: 768px) {
+  .card {
+    width: 45%;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    width: 90%;
+  }
 }
