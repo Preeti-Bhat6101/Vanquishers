@@ -9,7 +9,7 @@
   <style>
     body {
       font-family: 'Roboto', sans-serif;
-      background-image: url('/static/11.jpg'); /* Use the image name here */
+      background-image: url('11.jpg'); /* Use the image name here */
       background-size: cover; /* This makes the background image cover the entire viewport */
       background-position: 30% center; /* Move the background image more to the left */
       background-repeat: no-repeat; /* This prevents the background image from repeating */
@@ -18,6 +18,59 @@
       padding: 0;
       box-sizing: border-box;
     }
+    .navbar {
+    width: 1200px;
+    height: 75px;
+    margin: auto;
+}
+
+.icon {
+    width: 200px;
+    float: left;
+    height: 70px;
+}
+
+.logo {
+    color: #ff7200;
+    font-size: 35px;
+    font-family: Arial;
+    padding-left: 20px;
+    float: left;
+    padding-top: 10px;
+    margin-top: 5px;
+}
+
+.menu {
+    width: 700px;
+    float: left;
+    height: 75px;
+}
+
+ul {
+    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+ul li {
+    list-style: none;
+    margin-left: 62px;
+    margin-top: 27px;
+    font-size: 1.2rem;
+}
+
+ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-family: Arial;
+    font-weight: bold;
+    transition: 0.4s ease-in-out;
+}
+
+ul li a:hover {
+    color: #ff7200;
+}
 
     .content {
       background: rgba(0, 0, 0, 0.7); /* Semi-transparent black for glass effect */
@@ -131,6 +184,19 @@
 <body>
 
   <div class="content">
+    <div class="navbar">
+      <div class="icon">
+          <h2 class="logo">TECIDO</h2>
+      </div>
+      <div class="menu">
+          <ul>
+              <li><a href="#">Login</a></li>
+              <li><a href="#">Sign Up</a></li>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Contact Us</a></li>
+          </ul>
+      </div>
+  </div>
     <h2>About Tecido</h2>
     <p id="initial-content">At Tecido, we transform how you interact with your wardrobe. We believe that your clothes should work for you, not the other way around. With today’s fast-paced lifestyle, managing personal items can be overwhelming, leading to clutter, overconsumption, and environmental impact. Tecido helps you take control of your wardrobe in an easy and eco-friendly way, so you can focus on what matters: living sustainably and stylishly.</p>
     
