@@ -32,7 +32,7 @@ def init_db():
         )
     ''')
     db.execute('''
-        CREATE TABLE  outfits (
+        CREATE TABLE IF NOT EXISTS outfits (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             user_id INTEGER,
             outfit_name TEXT NOT NULL,
@@ -77,7 +77,7 @@ def login():
 
     
         session["user_id"] = rows[0]["id"]
-        return redirect("/")
+        return redirect("/wardrobe")
 
     return render_template("login.html")
 
@@ -146,6 +146,17 @@ def wardrobe():
     conn.close()
 
     return render_template("wardrobe.html", outfits=outfits)
+
+@app.route("/delete_outfit/<int:outfit_id>", methods=["POST"])
+def delete_outfit(outfit_id):
+    conn = get_db()
+    conn.execute("DELETE FROM outfits WHERE id = ?", (outfit_id,))
+    conn.commit()
+    conn.close()
+
+    flash("Outfit deleted!", 'success')
+    return redirect("/wardrobe")
+
 
 if __name__ == '__main__':
     app.run(debug=True)
