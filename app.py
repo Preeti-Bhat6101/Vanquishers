@@ -27,6 +27,7 @@ def init_db():
 # Initialize the database when the application starts
 init_db()
 
+app.config["SECRET_KEY"] = "hgfhsdhdfhs dfhsefh"
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
@@ -54,7 +55,7 @@ def login():
 
         if len(rows) != 1 or not check_password_hash(rows[0]["hash"], request.form.get("password")):
             flash("Invalid Username or Password")
-            return redirect("/")
+            return redirect("/login")
 
         # Log the user in
         session["user_id"] = rows[0]["id"]
