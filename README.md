@@ -29,7 +29,7 @@ Clone the repository:
 
 bash
 Copy code
-git clone https://github.com/your-username/tecido.git
+git clone https://github.com/Preeti-Bhat6101/Vanquishers
 cd tecido
 Create and activate a virtual environment:
 
