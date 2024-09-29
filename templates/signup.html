@@ -11,11 +11,11 @@
 <body>
     <div class="hero">
         <div class="form-box">
-            <form id="signup" class="input-group">
-                <input type="text" class="input-field" placeholder="User Name" required>
+            <form action="/signup" method="post" id="signup" class="input-group">
+                <input type="text" class="input-field" name="username" placeholder="User Name" required>
                 <input type="email" class="input-field" placeholder="Email Id" required>
-                <input type="text" class="input-field" placeholder="Enter Your Password" required>
-                <input type="checkbox" class="check-box"><span>I agree to the terms and conditions</span>
+                <input type="text" class="input-field" name="password" placeholder="Enter Your Password" required>
+                <input type="text" class="input-field" name="confirmation" placeholder="Confirm your password" required>
                 <button type="submit" class="submit-btn">Sign Up</button>
             </form>
         </div>    
